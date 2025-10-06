@@ -300,26 +300,23 @@ Think of Linux like a **house**:
 | Organized by purpose | Each directory has a defined function. |
 | Root privileges | Only the root user can modify system-level files. |
 
----
 
-### 🧪 Practice Commands
-
-```bash
-# List directories under root
+Tips: 
+#Practice Commands
+List directories under root
 ls /
 
-# View contents of /etc
+ View contents of /etc
 ls -l /etc
 
-# Check your current directory
+Check your current directory
 pwd
 
-# Move into a directory
+Move into a directory
 cd /home
 
-# Move one level up
+Move one level up
 cd ..
-
 
 ## 📝 Linux Text Editors — Study Summary
 
@@ -343,7 +340,7 @@ They can be **command-line based** (terminal editors) or **graphical** (GUI edit
 A beginner-friendly editor available by default in most Linux distributions.
 
 **Usage:**
-```bash
+
 nano filename.txt
 
 | Key        | Function    |
@@ -406,7 +403,7 @@ GUI text editors are user-friendly and ideal for coding or editing multiple file
 
 
 
-## 🔐 Linux File Permissions and Ownership — Study Summary
+# 🔐 Linux File Permissions and Ownership
 
 In Linux, **file permissions and ownership** control **who can read, write, or execute** a file or directory.  
 This security model ensures that users and processes can only access what they are allowed to.
@@ -434,7 +431,7 @@ Each file or directory in Linux has **three types of owners:**
 | **Others (o)** | Everyone else on the system. |
 
 You can view ownership and permissions using:
-```bash
+
 ls -l
 
 Example Output:
@@ -470,36 +467,36 @@ so:
 
 `chmod 644 file.txt` → User: `rw`-, Group: `r--`, Others: `r--`
 
-⚙️ Managing Permissions
+# ⚙️ Managing Permissions
 
-1. Change permissions with chmod
-# Add execute permission for user
+## 1. Change permissions with chmod
+### Add execute permission for user
 `chmod u+x script.sh`
 
-# Remove write permission for group
+### Remove write permission for group
 `chmod g-w notes.txt`
 
-# Give read permission to everyone
+### Give read permission to everyone
 `chmod a+r data.log`
 
-# Set numeric permissions (User=7, Group=5, Others=5)
+### Set numeric permissions (User=7, Group=5, Others=5)
 `chmod 755 script.sh`
 
-2. Change ownership with chown
-# Change owner of a file
+## 2. Change ownership with chown
+### Change owner of a file
 `sudo chown sarah file.txt`
 
-# Change owner and group
+### Change owner and group
 `sudo chown sarah:devops file.`txt`
 
-# Change ownership recursively in a directory
+### Change ownership recursively in a directory
 `sudo chown -R sarah:devops /project`
 
-3. Change group with 
+## 3. Change group with 
 
 `sudo chgrp developers report.txt`
 
-📂 File Type Indicators (from ls -l)
+### 📂 File Type Indicators (from ls -l)
 
 | Symbol | Type             | Example      |
 | ------ | ---------------- | ------------ |
@@ -513,16 +510,16 @@ so:
 
 🧩 Practical Examples
 
-# View permissions and ownership
+### View permissions and ownership
 ls -l
 
-# Make a script executable
+### Make a script executable
 chmod +x deploy.sh
 
-# Give group write permission
+### Give group write permission
 chmod g+w report.txt
 
-# Change file ownership to 'sarah'
+### Change file ownership to 'sarah'
 sudo chown sarah script.sh
 
 Quick Recap
@@ -535,21 +532,21 @@ Quick Recap
 | **chown / chgrp** → Change ownership and groups.    |             |
 | **ls -l** → View permission and ownership details.  |             |
 
-Practice Commands
-# Create a sample file
+###  Practice Commands
+Create a sample file
 touch test.sh
 
-# Check permissions
+### Check permissions
 ls -l test.sh
 
-# Give user full rights, others read-only
+### Give user full rights, others read-only
 chmod 744 test.sh
 
-# Assign to a group
+### Assign to a group
 sudo chown $USER:devops test.sh
 
 
-Tip
+# Tip
 When setting permissions, always follow the principle of least privilege 
 give users only the access they truly need to keep your system secure.
 
