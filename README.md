@@ -60,100 +60,144 @@ Here are the most widely used Linux commands, grouped into 11 categories:
 ### ========================
 ### 1. SYSTEM INFORMATION
 ### ========================
-uname -a        # Show system and kernel
-hostname        # Show system hostname
-uptime          # Show system uptime
-df -h           # Disk usage
-free -m         # Memory usage
-top             # Running processes
+`uname -a`        # Show system and kernel
+
+`hostname`        # Show system hostname
+
+`uptime`          # Show system uptime
+
+`df -h`           # Disk usage
+
+`free -m`         # Memory usage
+
+`top`             # Running processes
 
 ### ========================
 ### 2. NAVIGATION
 ### ========================
-pwd             # Print working directory
-ls              # List files
-cd /path        # Change directory
-cd ..           # Go up one directory
-tree            # Show directories as a tree
+`pwd`             # Print working directory
+
+`ls`              # List files
+
+`cd /path`        # Change directory
+
+`cd ..`           # Go up one directory
+
+`tree`            # Show directories as a tree
 
 ### ========================
 ### 3. FILE OPERATIONS
 ### ========================
-touch file.txt              # Create a new file
-cat file.txt                # Show file content
-cp file.txt backup.txt      # Copy file
-mv file.txt /tmp/           # Move file
-rm file.txt                 # Remove file
+`touch file.txt`             # Create a new file
+
+`cat file.txt`                # Show file content
+
+`cp file.txt backup.txt`      # Copy file
+
+`mv file.txt /tmp/ `          # Move file
+
+`rm file.txt`                 # Remove file
 
 ### ========================
 ### 4. FILE PERMISSIONS
 ### ========================
-ls -l                       # List permissions
-chmod 755 file.txt          # Change permissions
-chown user:group file.txt   # Change owner
-umask                       # Show default permissions
+`ls -l`                       # List permissions
+
+`chmod 755 file.txt`          # Change permissions
+
+`chown user:group file.txt`   # Change owner
+
+`umask`                       # Show default permissions
 
 ### ========================
 ### 5. USER & GROUP MANAGEMENT
 ### ========================
-whoami                      # Current user
-id                          # Show user/group IDs
-adduser newuser             # Add a new user
-passwd newuser              # Set user password
-groups                      # Show groups
+`whoami`                      # Current user
+
+`id`                          # Show user/group IDs
+
+`adduser newuser`            # Add a new user
+
+`passwd newuser`              # Set user password
+
+`groups`                     # Show groups
 
 ### ========================
 ### 6. TEXT PROCESSING
 ### ========================
-cat file.txt                # View file content
-less file.txt               # Scroll through file
-grep "word" file.txt        # Search text in file
-sort file.txt               # Sort file content
-wc -l file.txt              # Count lines in file
+`cat file.txt `               # View file content
+
+`less file.txt `              # Scroll through file
+
+`grep "word" file.txt`        # Search text in file
+
+`sort file.txt `              # Sort file content
+
+`wc -l file.txt `             # Count lines in file
+
 
 #### ========================
 ### 7. PROCESS MANAGEMENT
 ### ========================
-ps aux                      # Show running processes
-top                         # Monitor processes
-kill -9 PID                 # Kill a process
-jobs                        # Show background jobs
-fg                          # Bring job to foreground
+`ps aux`                      # Show running processes
+
+`top`                         # Monitor processes
+
+`kill -9 PID`                # Kill a process
+
+`jobs`                        # Show background jobs
+
+`fg `                         # Bring job to foreground
 
 ### ========================
 ### 8. PACKAGE MANAGEMENT (Ubuntu/Debian)
 ### ========================
-sudo apt update             # Update package list
-sudo apt upgrade            # Upgrade packages
-sudo apt install pkg        # Install package
-sudo apt remove pkg         # Remove package
-dpkg -l                     # List installed packages
+`sudo apt update `            # Update package list
+
+`sudo apt upgrade `           # Upgrade packages
+
+`sudo apt install pkg`        # Install package
+
+`sudo apt remove pkg`        # Remove package
+
+`dpkg -l`                     # List installed packages
 
 ### ========================
 ### 9. NETWORKING
 ### ========================
-ping google.com             # Test connectivity
-ifconfig                    # Show network interfaces
-ip addr show                # Show IP addresses
-netstat -tuln               # Show open ports
-curl http://example.com     # Fetch URL
+`ping google.com `            # Test connectivity
+
+`ifconfig `                   # Show network interfaces
+
+`ip addr show `              # Show IP addresses
+
+`netstat -tuln `              # Show open ports
+
+`curl http://example.com `    # Fetch URL
 
 ### ========================
 ### 10. COMPRESSION & ARCHIVING
 ### ========================
-tar -cvf archive.tar files/ # Create tar archive
-tar -xvf archive.tar        # Extract tar archive
-gzip file.txt               # Compress file
-gunzip file.txt.gz          # Decompress file
+`tar -cvf archive.tar files/` # Create tar archive
+
+`tar -xvf archive.tar`        # Extract tar archive
+
+`gzip file.txt `              # Compress file
+
+`gunzip file.txt.gz `         # Decompress file
 
 ### ========================
 ### 11. SYSTEM CONTROL
 ### ========================
-shutdown -h now             # Shutdown immediately
-reboot                      # Reboot system
-systemctl status service    # Show service status
-systemctl start service     # Start service
-systemctl stop service      # Stop service
+`shutdown -h now `            # Shutdown immediately
+
+`reboot`                      # Reboot system
+
+`systemctl status service`    # Show service status
+
+`systemctl start service `    # Start service
+
+`systemctl stop service `     # Stop service
 
 
 
