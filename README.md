@@ -885,6 +885,245 @@ Example:
 | View user info    | `id sarah`                      |
 | Change password   | `sudo passwd sarah`             |
 
+# ⚙️ Process Management in Linux
+
+Every task that runs in Linux — whether it’s opening a file, running a browser, or starting a web server — is called a **process**.  
+Understanding and managing processes is one of the most important Linux skills, especially for **DevOps engineers**, **admins**, and **power users**. 
+
+
+## 🧩 What is a Process?
+
+A **process** is simply a program in execution.  
+Each process has:
+- A **PID** (Process ID)
+- A **user** who started it
+- A **state** (running, sleeping, stopped, etc.)
+- A **priority**
+- And it consumes some **CPU** and **memory**
+
+To see your currently running processes:
+
+`ps`
+
+To see them in a detailed view:
+
+`ps -ef`
+
+## 🔍 Viewing Processes
+### ✅ List All Running Processes
+
+`ps aux`
+
+Shows all processes by all users in a full-format listing.
+
+| Column  | Meaning                     |
+| ------- | --------------------------- |
+| USER    | Owner of the process        |
+| PID     | Process ID                  |
+| %CPU    | CPU usage                   |
+| %MEM    | Memory usage                |
+| COMMAND | Name of the running command |
+
+## ✅ Real-Time Process Monitoring
+
+`top`
+
+This opens a live dashboard of system performance.
+
+Press:
+
+`q` → to quit
+
+`k` → to kill a process
+
+`P` → to sort by CPU usage
+
+`M` → to sort by memory usage
+
+#### 💡 Modern alternative:
+
+`htop`
+
+(You might need to install it using sudo apt install htop.)
+It’s colorful and interactive — much easier to read!
+
+## 🧠 Finding Specific Processes
+### ✅ Search for a Process by Name
+
+`ps aux | grep nginx`
+Finds all processes related to “nginx.”
+
+### ✅ Get Process Tree View
+
+`pstree`
+Shows which processes started others (parent/child relationships).
+
+## 🧰 Managing Processes
+### ✅ Start a Process
+
+`./script.sh`
+
+or run a command directly:
+
+`python3 app.py`
+
+### ✅ Stop (Kill) a Process
+
+`kill <PID>`
+
+Example:
+
+`kill 2020`
+
+If it refuses to stop:
+
+`kill -9 2020`
+
+💀 The -9 flag forces termination.
+
+### ✅ Suspend a Process (Pause It)
+
+`kill -STOP <PID>`
+
+### ✅ Resume a Stopped Process
+
+`kill -CONT <PID>`
+
+## ⏫ Managing Background & Foreground Jobs
+
+You can send processes to the background or bring them back to the foreground easily.
+
+### ✅ Run a Process in the Background
+
+`python3 app.py &`
+
+The & makes it run in the background.
+
+### ✅ List Background Jobs
+
+`jobs`
+
+### ✅ Bring a Background Job to Foreground
+
+`fg %1`
+
+### ✅ Send a Running Process to Background
+
+Press:
+`Ctrl + Z`
+
+Then type:
+`bg`
+
+## 🧮 Priority & Nice Values
+
+Each process has a priority that determines how much CPU time it gets.
+
+### ✅ Start a Process with Low Priority
+
+`nice -n 10 python3 app.py`
+
+### ✅ Change Priority of a Running Process
+
+`renice -n 5 -p 2020`
+
+Lower numbers = higher priority
+Range: -20 (highest) → 19 (lowest)
+
+## 🧾 Checking Resource Usage
+
+### ✅ CPU and Memory Usage per Process
+
+`top`
+
+Or
+
+`ps aux --sort=-%mem | head`
+
+Shows tops processes by memory usage.
+
+## 🧩 System Monitoring Commands
+| Command         | Description                         |
+| --------------- | ----------------------------------- |
+| `ps aux`        | List all running processes          |
+| `top`           | Real-time process monitor           |
+| `htop`          | Interactive version of top          |
+| `pstree`        | Show process hierarchy              |
+| `kill <PID>`    | Terminate a process                 |
+| `kill -9 <PID>` | Force-kill a process                |
+| `jobs`          | List background jobs                |
+| `fg` / `bg`     | Bring jobs to foreground/background |
+| `nice`          | Start process with priority         |
+| `renice`        | Change priority of running process  |
+| `pgrep <name>`  | Find PID of process by name         |
+| `pkill <name>`  | Kill processes by name              |
+
+
+## 🌈 Practical Example
+
+Let’s say you started a Python app and want to manage it:
+
+`python3 app.py &`
+
+You check it’s running:
+
+`ps aux | grep app.py`
+
+You find it’s PID is 3020.
+
+Then, to stop it:
+
+`kill 3020`
+
+Or, if it's stubborn:
+
+`kill -9 3020`
+
+## 🧠 Quick Summary
+| Task                 | Command                                 |              |
+| -------------------- | --------------------------------------- | ------------ |
+| View processes       | `ps aux`                                |              |
+| Live monitor         | `top` / `htop`                          |              |
+| Search for a process | `ps aux                                 | grep <name>` |
+| Kill a process       | `kill <PID>`                            |              |
+| Force kill           | `kill -9 <PID>`                         |              |
+| Send to background   | `command &`                             |              |
+| Bring to foreground  | `fg %1`                                 |              |
+| Pause/Resume         | `kill -STOP <PID>` / `kill -CONT <PID>` |              |
+| View process tree    | `pstree`                                |              |
+| Change priority      | `nice`, `renice`                        |              |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
