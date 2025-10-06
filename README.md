@@ -551,5 +551,166 @@ When setting permissions, always follow the principle of least privilege
 give users only the access they truly need to keep your system secure.
 
 
+##### Always check if an editor is installed
+
+`which vim`
+`which nano`
+
+##### To install any missing editor
+
+`sudo apt install vim `  # or nano, gedit, emacs, kate
+
+#### You can set yur preferred editor using
+
+`export EDITOR=vim`
+
+
+# 🔐 Access Control Lists (ACL) in Linux
+
+In Linux, **Access Control Lists (ACLs)** give you *superpowers* over file permissions!  
+They allow you to go **beyond the basic `rwx` permissions** (read, write, execute) and assign **specific access rights** to multiple users or groups — not just the file owner or group.
+
+Think of ACLs as giving out **special VIP passes** to certain users for your files or folders. 🎟️
+
+
+
+## 🎯 Why Use ACLs?
+
+The regular Linux permissions system (owner, group, others) looks like this: 
+
+` -rw-r--r--`
+
+That means:
+- Owner can **read/write**
+- Group can **read**
+- Others can **read**
+
+But what if you want **one extra user** (not the owner or in the group) to also write to the file?
+
+That’s where **ACLs** come in — they give you that extra control. 💪
+
+
+
+## ⚙️ Enabling ACLs (if not already enabled)
+
+Most modern Linux systems have ACLs enabled by default.  
+To check if a filesystem supports it, run:
+
+`mount | grep acl`
+If it's not enabled, you can remount with:
+
+`sudo mount -o remount,acl / `
+
+## 🧩 Viewing ACLs
+To see which ACLs are set on a file or directory:
+
+` getfacl filename `
+
+Example output:
+
+ file: report.txt
+ owner: sarah
+ group: staff
+
+user::rw-
+user:alex:rw-
+group::r--
+mask::rw-
+other::r--
+
+Explanation:
+
+user::rw- → file owner (Sarah)
+
+user:alex:rw- → special ACL entry for Alex
+
+group::r-- → group permissions
+
+mask::rw- → maximum allowed permissions for users/groups
+
+other::r-- → everyone else
+
+## 🛠️ Setting ACLs
+### ✅ Give a user permission to a file:
+
+`setfacl -m u:alex:rw filename`
+This gives Alex read and write access to `filename`
+
+### ✅ Give a group permission to a directory:
+
+`setfacl -m g:developers:rwx /project`
+Now, all users in developers group can read, write and execute inside `/project`
+
+### ✅ Apply ACLs recursively (to all files and folders inside a directory):
+
+`setfacl -R -m u:alex:rw /project`
+
+### ✅ Remove an ACL entry:
+
+`setfacl -x u:alex filename`
+
+### ✅ Remove all ACLs from a file:
+
+`setfacl -b filename`
+
+## Default ACLs for New Files
+
+### You can set default ACLs so that any new files created inside a directory automatically inherit specific permissions.
+
+`setfacl -m d:u:alex:rwx /shared`
+Here, any file created inside `/shared` automatically gives Alex full access.
+
+## 🧠 Quick Summary
+
+| Command                        | Meaning                        |
+| ------------------------------ | ------------------------------ |
+| `getfacl file`                 | View ACLs for a file           |
+| `setfacl -m u:user:perm file`  | Add or modify ACL for a user   |
+| `setfacl -m g:group:perm dir`  | Add or modify ACL for a group  |
+| `setfacl -x u:user file`       | Remove a specific user’s ACL   |
+| `setfacl -b file`              | Remove all ACLs                |
+| `setfacl -R`                   | Apply changes recursively      |
+| `setfacl -m d:u:user:perm dir` | Set default ACLs for new files |
+
+
+## 🧩 Pro Tip:
+### To make sure ACLs are active on your system:
+
+`sudo tune2fs -l /dev/sda1 | grep "Default mount options"`
+
+If `acl` isn't listed, enable it in `/etc/fstab` by adding `acl` to your filesystem options.
+
+
+## 💡 Real-Life Example
+
+Imagine you’re working on a shared project folder `/project` with two colleagues:
+
+You own the folder.
+
+You want Alex to edit files.
+
+You want Kim to only read files.
+
+Here’s how you do it:
+`setfacl -m u:alex:rw /project`
+`setfacl -m u:kim:r /project`
+
+Now both Alex and Kim have exactly the permissions they need — and you didn’t have to change the main ownership or group structure!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
