@@ -321,4 +321,238 @@ cd /home
 cd ..
 
 
+## 📝 Linux Text Editors — Study Summary
+
+Text editors are essential tools in Linux for **creating and modifying text files**, such as configuration files, scripts, and code.  
+They can be **command-line based** (terminal editors) or **graphical** (GUI editors).
+
+
+
+### 🧭 Categories of Text Editors
+
+| Type | Description | Examples |
+|------|--------------|-----------|
+| **Command-Line Editors** | Run inside the terminal. Ideal for servers and system admins. | `vi`, `vim`, `nano`, `emacs` |
+| **Graphical Editors** | Run in desktop environments with menus and mouse support. | `gedit`, `kate`, `sublime-text`, `visual-studio-code` |
+
+
+
+### 💻 Common Linux Command-Line Editors
+
+#### 🟢 1. `nano`
+A beginner-friendly editor available by default in most Linux distributions.
+
+**Usage:**
+```bash
+nano filename.txt
+
+| Key        | Function    |
+| ---------- | ----------- |
+| `Ctrl + O` | Save file   |
+| `Ctrl + X` | Exit editor |
+| `Ctrl + K` | Cut text    |
+| `Ctrl + U` | Paste text  |
+| `Ctrl + W` | Search text |
+
+🔵 2. vi (or vim)
+
+A powerful and popular editor among developers and system admins.
+
+vi filename.txt
+
+Modes in vi/vim:
+| Mode               | Description                                                          |
+| ------------------ | -------------------------------------------------------------------- |
+| **Command Mode**   | Default mode for navigation and issuing commands.                    |
+| **Insert Mode**    | Allows typing and editing text. Enter using `i`.                     |
+| **Last-Line Mode** | Used for saving, quitting, or executing commands (triggered by `:`). |
+
+Common Commands:
+| Command | Function               |
+| ------- | ---------------------- |
+| `i`     | Enter insert mode      |
+| `Esc`   | Return to command mode |
+| `:w`    | Save changes           |
+| `:q`    | Quit editor            |
+| `:wq`   | Save and quit          |
+| `:q!`   | Quit without saving    |
+| `/text` | Search for “text”      |
+
+🟣 3. emacs
+
+A highly customizable and extensible editor with both command-line and GUI modes.
+
+emacs filename.txt
+
+Basic Shortcuts:
+| Key                  | Function       |
+| -------------------- | -------------- |
+| `Ctrl + X, Ctrl + S` | Save file      |
+| `Ctrl + X, Ctrl + C` | Exit editor    |
+| `Ctrl + K`           | Cut line       |
+| `Ctrl + Y`           | Paste line     |
+| `Ctrl + S`           | Search forward |
+
+🖥️ Graphical Editors (GUI)
+
+GUI text editors are user-friendly and ideal for coding or editing multiple files visually.
+
+| Editor           | Description                                   | Command to Install (Ubuntu/Debian)         |
+| ---------------- | --------------------------------------------- | ------------------------------------------ |
+| **gedit**        | Default GNOME editor; simple and easy to use. | `sudo apt install gedit`                   |
+| **kate**         | KDE advanced text editor.                     | `sudo apt install kate`                    |
+| **Sublime Text** | Fast, modern editor with rich plugins.        | `sudo snap install sublime-text --classic` |
+| **VS Code**      | Popular cross-platform editor by Microsoft.   | `sudo snap install code --classic`         |
+
+
+
+## 🔐 Linux File Permissions and Ownership — Study Summary
+
+In Linux, **file permissions and ownership** control **who can read, write, or execute** a file or directory.  
+This security model ensures that users and processes can only access what they are allowed to.
+
+---
+
+### 🧭 The Three Permission Types
+
+| Permission | Symbol | Description | Example |
+|-------------|----------|-------------|----------|
+| **Read** | `r` | View file contents or list directory contents. | `cat file.txt` |
+| **Write** | `w` | Modify file contents or add/delete files in a directory. | `nano file.txt` |
+| **Execute** | `x` | Run files (programs/scripts) or enter directories. | `./script.sh` |
+
+---
+
+### 👥 File Ownership in Linux
+
+Each file or directory in Linux has **three types of owners:**
+
+| Owner Type | Description |
+|-------------|--------------|
+| **User (u)** | The person who created the file. |
+| **Group (g)** | A set of users with shared access. |
+| **Others (o)** | Everyone else on the system. |
+
+You can view ownership and permissions using:
+```bash
+ls -l
+
+Example Output:
+
+-rwxr-xr--  1 sarah devops  2450 Oct 6 10:20 script.sh
+
+Breakdown:
+| Section  | Meaning                                         |
+| -------- | ----------------------------------------------- |
+| `-`      | File type (`-` = file, `d` = directory)         |
+| `rwx`    | Permissions for **user** (read, write, execute) |
+| `r-x`    | Permissions for **group** (read, execute)       |
+| `r--`    | Permissions for **others** (read only)          |
+| `sarah`  | File owner                                      |
+| `devops` | Group owner                                     |
+
+🔢 Numeric (Octal) Representation
+Permissions can also be expressed as numbers (0–7), known as octal notation.
+
+| Number | Permission | Binary | Meaning                |
+| ------ | ---------- | ------ | ---------------------- |
+| `0`    | ---        | 000    | No permissions         |
+| `1`    | --x        | 001    | Execute only           |
+| `2`    | -w-        | 010    | Write only             |
+| `3`    | -wx        | 011    | Write + Execute        |
+| `4`    | r--        | 100    | Read only              |
+| `5`    | r-x        | 101    | Read + Execute         |
+| `6`    | rw-        | 110    | Read + Write           |
+| `7`    | rwx        | 111    | Read + Write + Execute |
+
+so:
+`chmod 755 file.sh` → User: `rwx`, Group: `r-x`, Others: `r-x`
+
+`chmod 644 file.txt` → User: `rw`-, Group: `r--`, Others: `r--`
+
+⚙️ Managing Permissions
+
+1. Change permissions with chmod
+# Add execute permission for user
+`chmod u+x script.sh`
+
+# Remove write permission for group
+`chmod g-w notes.txt`
+
+# Give read permission to everyone
+`chmod a+r data.log`
+
+# Set numeric permissions (User=7, Group=5, Others=5)
+`chmod 755 script.sh`
+
+2. Change ownership with chown
+# Change owner of a file
+`sudo chown sarah file.txt`
+
+# Change owner and group
+`sudo chown sarah:devops file.`txt`
+
+# Change ownership recursively in a directory
+`sudo chown -R sarah:devops /project`
+
+3. Change group with 
+
+`sudo chgrp developers report.txt`
+
+📂 File Type Indicators (from ls -l)
+
+| Symbol | Type             | Example      |
+| ------ | ---------------- | ------------ |
+| `-`    | Regular file     | `-rw-r--r--` |
+| `d`    | Directory        | `drwxr-xr-x` |
+| `l`    | Symbolic link    | `lrwxrwxrwx` |
+| `b`    | Block device     | `brw-rw----` |
+| `c`    | Character device | `crw-rw----` |
+| `p`    | Named pipe       | `prw-r--r--` |
+| `s`    | Socket           | `srwxr-xr-x` |
+
+🧩 Practical Examples
+
+# View permissions and ownership
+ls -l
+
+# Make a script executable
+chmod +x deploy.sh
+
+# Give group write permission
+chmod g+w report.txt
+
+# Change file ownership to 'sarah'
+sudo chown sarah script.sh
+
+Quick Recap
+| Concept                                             | Description |
+| --------------------------------------------------- | ----------- |
+| **Read (r)** → View files or directories.           |             |
+| **Write (w)** → Modify files or directory contents. |             |
+| **Execute (x)** → Run scripts or enter directories. |             |
+| **chmod** → Change permissions.                     |             |
+| **chown / chgrp** → Change ownership and groups.    |             |
+| **ls -l** → View permission and ownership details.  |             |
+
+Practice Commands
+# Create a sample file
+touch test.sh
+
+# Check permissions
+ls -l test.sh
+
+# Give user full rights, others read-only
+chmod 744 test.sh
+
+# Assign to a group
+sudo chown $USER:devops test.sh
+
+
+Tip
+When setting permissions, always follow the principle of least privilege 
+give users only the access they truly need to keep your system secure.
+
+
+
 
