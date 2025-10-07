@@ -1293,13 +1293,7 @@ You can schedule tasks to:
 
 A crontab line has **five time fields** followed by the **command to run**:
 
-. . . . . command-to-execute
-│ │ │ │ │
-│ │ │ │ └── Day of the week (0 - 6) (Sunday = 0)
-│ │ │ └───── Month (1 - 12)
-│ │ └──────── Day of month (1 - 31)
-│ └─────────── Hour (0 - 23)
-└────────────── Minute (0 - 59)
+![alt text](image.png)
 
 
 Example:
