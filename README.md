@@ -1095,6 +1095,183 @@ Or, if it's stubborn:
 
 
 
+# 🧭 System Control in Linux
+
+System control is all about **managing system services, processes, and states**. Think of it as being the "director" of your Linux system, you tell which services start, stop, restart, or run automatically at boot.
+
+
+
+## ⚙️ What Is `systemctl`?
+
+`systemctl` is the command-line tool used to **interact with the systemd system and service manager**. It lets you manage system daemons (background services) and the overall system state.
+
+You can use it to:
+- Start or stop services
+- Enable or disable them at startup
+- Check the status of services
+- Reboot or power off the system
+- Manage system targets (like runlevels)
+
+
+
+## 🚀 Common `systemctl` Commands
+
+| Task | Command | Description |
+|------|----------|-------------|
+| Check status of a service | `systemctl status ssh` | Shows whether the SSH service is active or not |
+| Start a service | `sudo systemctl start apache2` | Starts the Apache web server immediately |
+| Stop a service | `sudo systemctl stop apache2` | Stops the Apache web server |
+| Restart a service | `sudo systemctl restart apache2` | Restarts the service (useful after config changes) |
+| Enable a service at boot | `sudo systemctl enable apache2` | Makes it start automatically on boot |
+| Disable a service at boot | `sudo systemctl disable apache2` | Prevents it from starting automatically |
+| Reload all services | `sudo systemctl daemon-reload` | Reloads systemd manager configuration |
+
+
+## 💡 Checking System State
+
+You can manage the **entire system state** using systemctl too:
+
+| Action | Command |
+|--------|----------|
+| Reboot the system | `sudo systemctl reboot` |
+| Power off the system | `sudo systemctl poweroff` |
+| Put the system to sleep | `sudo systemctl suspend` |
+| Show current runlevel | `systemctl get-default` |
+| Change to multi-user mode | `sudo systemctl isolate multi-user.target` |
+
+
+
+## 🧩 Example Scenario
+
+Let’s say you installed Nginx but it didn’t start automatically. You can do:
+
+`sudo systemctl start nginx`
+`sudo systemctl enable nginx`
+
+Now Nginx will start automatically every time you boot up.
+
+## Bonus Tip
+
+You can list all active services by running:
+
+`systemctl list-units --type=service`
+
+Or see failed services:
+
+`systemctl --failed`
+
+## 🧠 Summary
+
+`systemctl` controls system services and overall system state.
+
+It replaces older commands like `service` and `chkconfig`.
+
+**Knowing how to use it helps you keep your Linux system healthy, efficient, and predictable.**
+
+“Mastering `systemctl` makes you the system’s orchestra conductor, service dances to your tune!”
+
+
+
+## 🔒 System Permissions & Ownership
+
+In Linux, **permissions and ownership** control who can read, write, or execute files.  
+Think of it as a *security badge system* ,users get specific access to specific areas.
+
+In system  permission and onwership the same rules are followed as discussed in the file permission section. 
+
+Just to have a quick recap on what already mentioned above:
+
+## 🧍 Understanding Users, Groups, and Others
+
+Each file in Linux has **three levels of access**:
+
+| Level | Who it Applies To | Example |
+|--------|-------------------|----------|
+| **User (u)** | The owner of the file | You, the creator |
+| **Group (g)** | Members of the file’s group | Team members |
+| **Others (o)** | Everyone else | Public access |
+
+
+
+## 🔐 File Permissions
+
+Every file or directory has **three types of permissions**:
+
+| Permission | Symbol | What it Means |
+|-------------|---------|----------------|
+| **Read** | `r` | View file contents or list directory |
+| **Write** | `w` | Modify file or directory contents |
+| **Execute** | `x` | Run the file as a program |
+
+
+
+### Example:
+
+Run:
+
+`ls -l`  output might look like: `-rwxr-xr--`
+Breakdown:
+
+`-` → Regular file (not a directory)
+
+`rwx` → User can read, write, execute
+
+`r-x` → Group can read, execute
+
+`r--` → Others can read only
+
+## 🧮 Numeric Permissions (Octal Mode)
+
+This is the most common way of giving permissions, it's neat and easy to apply.
+
+Each permission has a number:
+
+
+| Permission  | Value |
+| ----------- | ----- |
+| Read (r)    | 4     |
+| Write (w)   | 2     |
+| Execute (x) | 1     |
+
+To calculate total permission, add the numbers together.
+
+| Access | Numeric Value | Meaning                |
+| ------ | ------------- | ---------------------- |
+| `rwx`  | 7             | Read + Write + Execute |
+| `rw-`  | 6             | Read + Write           |
+| `r--`  | 4             | Read only              |
+
+Example:
+
+`chmod 755 script.sh`
+
+Means: 
+User → 7 (rwx)
+
+Group → 5 (r-x)
+
+Others → 5 (r-x)
+
+## 🧠 Summary
+
+Linux permissions = Who can Read, Write, or Execute.
+
+Ownership defines who controls the file.
+
+Use `chmod`, ``chown`, and `chgrp` to manage access.
+
+**Always handle permissions carefully, one wrong number can expose your entire system!**
+
+“Good permissions management is like giving keys only to the right people, not everyone needs access to the vault.”
+
+
+
+
+
+
+
+
+
 
 
 
