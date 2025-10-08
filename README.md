@@ -763,6 +763,29 @@ Group name: `developers`
 Members: `alex` and `kim`
 
 ## 🧩 Managing Users
+
+### Managing administrators
+
+There are two ways of adding users in a  sudoers file
+
+1. `sudo visudo` (this is a symbolic link for the `sudo nano /etc/sudoers`)
+2. `sudo nano /etc/sudoers (recommended to use)`
+
+Note that one should be very careful to who he/she gives sudo rights. Because they will have admin rights to access all files, modify or delete them.
+
+Options presented will be:
+
+ **User privilege specification**
+root    ALL=(ALL:ALL) ALL
+root    ALL=(ALL:ALL) NOPASSWD: ALL (for the root user or admin alone)
+
+**Members of the admin group may gain root privileges**
+%admin ALL=(ALL) ALL (% sign symbolises that it's a group)
+
+**Allow members of group sudo to execute any command**
+%sudo   ALL=(ALL:ALL) ALL
+
+
 ### ✅ Create a New User
 
 `sudo adduser john`
